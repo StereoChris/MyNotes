@@ -1,33 +1,33 @@
-﻿Book book = new Book("Programming notes");
-List<Chapter> chapters = new List<Chapter>();
-
-Chapter variablesChapter = new Chapter("Vars");
-chapters.Add(variablesChapter);
-
-List<Page> variablesPages = new List<Page>();
-Page variablesPage = new Page(MyNotes.VariablesPageOne);
-Page variablesPageTwo = new Page(MyNotes.VariablesPageTwo);
-variablesPages.Add(variablesPage);
-variablesPages.Add(variablesPageTwo);
-
-variablesChapter.Pages = variablesPages;
-book.Chapters = chapters;
-
-book.Start();
+﻿List<Page> Pages = new List<Page>();
 
 
+Page page1 = new Page("min første side");
+Page page2 = new Page("Min side 2");
+Page page3 = new Page("Min side 3");
 
-// Ved brug af constructor chaining kan vi gøre ovenstående mere læsbart:
-Book book2 = new Book("Programming notes", new List<Chapter>(){
-    new Chapter("Vars", new List<Page>(){
-        new Page(MyNotes.VariablesPageOne),
-        new Page(MyNotes.VariablesPageTwo)
-    }),
-    new Chapter("Unity", new List<Page>(){
-        //new Page(MyNotes.UnityPageOne),
-        //new Page(MyNotes.UnityPageTwo),
-        //new Page(MyNotes.UnityPageThree)
-    })
-});
+Pages.Add(page1);
+Pages.Add(page2);
+Pages.Add(page3);
 
-//book2.Start();
+foreach (var item in Pages)
+{
+    item.Read();
+}
+
+Chapter Chapter1 = new Chapter("kapitel1");
+Chapter1.Pages = Pages;
+Chapter Chapter2 = new Chapter("kapitel2", Pages);
+
+Chapter1.Read();
+Chapter2.Read();
+
+List<Chapter> Chapter3 = new List<Chapter>();
+Chapter.Add(Chapter1);
+Chapter.Add(Chapter2);
+
+Book mybook = new Book("programming notes");
+
+Book.Start();
+
+//pause
+Console.ReadLine();
